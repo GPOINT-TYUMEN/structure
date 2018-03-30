@@ -1,0 +1,21 @@
+@@include('header.html', {
+	"title": "Привет, это структура front-end",
+	"desc": "",
+	"h1": "",
+	"css": [
+		"template"
+	]
+})	
+
+
+<div class="modules">
+	@@include('site/modules/index/module.html')
+</div>
+
+@@include('site/widgets/modal/widget.html')
+
+@@include('footer.html', {
+	"js": [
+		"template"
+	]
+})

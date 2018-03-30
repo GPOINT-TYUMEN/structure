@@ -1,0 +1,27 @@
+{
+
+	"phone": "",
+	"tel": "",
+
+
+	"_comment": "Данные вк API для отправки сообщений после загрузки проекта на сервер",
+	"project": {
+		"author": "https://vk.comwe/webcoder2014",
+		"manager": "https://vk.comwe/webcoder2014",
+		"url": "Ссылка на проект"
+	},
+
+	"mail": {
+		"email": {
+			"0": "webproger2014@gmail.com",
+			"1": "webproger2014@gmail.com"
+		},
+
+		"theme": "Заявка с сайта",
+		"authorMsg": "Название сообщения"
+	},
+
+	"load": {
+		"dir": "В какую папку будет загружаться проект на хостинг"
+	}
+}

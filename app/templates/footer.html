@@ -1,0 +1,12 @@
+	<!-- CMS -->
+	<script type="text/javascript" src="cms/js/cms.js"></script>
+	<!-- /CMS -->
+	@@if (typeof(js) !== "undefined" && js.length > 0) {
+	<!-- TEMPLATE -->	
+		@@for (var index = 0; index < js.length; index++) {
+		  <script type="text/javascript" src="js/`+js[index]+`.js" async></script>
+		}
+	<!-- /TEMPLATE -->		
+	}
+</body>
+</html>

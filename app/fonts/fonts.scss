@@ -1,0 +1,9 @@
+
+$ProximaSemiboldItalic: 'ProximaNovaSemiboldItalic';
+$ProximaSemibold: 'ProximaNova-Semibold';
+
+
+@include fonts($ProximaSemiboldItalic, 'proxima/');
+@include fonts($ProximaSemibold, 'proxima/');
+
+
