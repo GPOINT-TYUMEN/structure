@@ -28,23 +28,77 @@ var configData   = jsonfile.readFileSync('app/templates/config/data.json'),
 	configConfig = jsonfile.readFileSync('app/templates/config/config.json');
 
 
+//> Сборка фреймворка
 var sitemap = {
 	lastmode: function () {
-		return new Date();
+		var date =  new Date();
+
+		var month = '' + (date.getMonth() + 1);
+
+		if (month.length === 1) {
+			month = '0' + month;
+		}
+		date = date.getFullYear() + '-' + month + '-' + date.getDate();
+		return date;
 	},
 
 	pattern: function (url, date) {
-		return  '<url>\n\t' +
-				  '<loc>' + url + '</loc>\n\t' +
-				  '<lastmod>' + date + '</lastmod>\n\t' +
-				  '<changefreq>daily</changefreq>\n\t' +
-				  '<priority>1.0</priority>\n\t' +
+		return  ' <url>\n' +
+				'  <loc>' + configData.project.url + url + '</loc>\n' +
+				'  <lastmod>' + date + '</lastmod>\n' +
+				'  <changefreq>daily</changefreq>\n' +
+				'  <priority>1.0</priority>\n' +
 				' </url>';
+	},
+
+	urls: function () {
+		var route = configData.route;
+			routeCount = Object.keys(configData.route).length;
+
+		var urls = '';	
+		for (var index = 0; index < routeCount; index++) {
+			urls += sitemap.pattern(route['' + index + ''], sitemap.lastmode());
+		}
+
+		console.log(urls);
+		return urls; 		
 	}
 }
-gulp.task('date', function () {
-  console.log(sitemap.pattern('Сайт', sitemap.lastmode()));
+
+var robots = {
+	allow: {
+		get: function (url) {
+			return 'Allow: ' + url + '\n';
+		},
+
+		render: function () {
+			var route = configData.route;
+				routeCount = Object.keys(configData.route).length;
+
+			var urls = '';	
+			for (var index = 0; index < routeCount; index++) {
+				urls += robots.allow.get(route['' + index + '']);
+			}
+
+			return urls; 			
+		}
+	}
+}
+
+//Генерирует robots.txt на основе маршрутов
+gulp.task('robots', function () {
+	 gulp.src('seo/robots.txt')
+	 .pipe(replace('$Allow',  robots.allow.render()))
+	 .pipe(gulp.dest('dist/'));	
 });
+
+gulp.task('sitemap', function () {
+	 gulp.src('seo/sitemap.xml')
+	 .pipe(replace('$urls',  sitemap.urls()))
+	 .pipe(gulp.dest('dist/'));	
+});
+//< Сборка фреймворка
+
 
 gulp.task('sass', function () {
 	return gulp.src(['app/scss/**/*.scss', '!app/scss/overall/**/*.scss'])

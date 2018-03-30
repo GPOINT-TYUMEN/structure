@@ -6,9 +6,9 @@
 
 	"_comment": "Данные вк API для отправки сообщений после загрузки проекта на сервер",
 	"project": {
-		"author": "https://vk.comwe/webcoder2014",
-		"manager": "https://vk.comwe/webcoder2014",
-		"url": "Ссылка на проект"
+		"author": "https://vk.com/webcoder2014",
+		"manager": "https://vk.com/webcoder2014",
+		"url": "https://vk.com"
 	},
 
 	"mail": {
@@ -23,5 +23,10 @@
 
 	"load": {
 		"dir": "В какую папку будет загружаться проект на хостинг"
+	},
+
+	"route": {
+		"0": "/index-1",
+		"1": "/index-2"
 	}
 }
